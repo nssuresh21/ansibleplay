@@ -10,10 +10,10 @@
           service:
               name: httpd
               state: stopped
-              enabled: false
-          notify: start apache
+          notify:
+          -  start apache
 
-          handlers:
-               name: start apache
+        handlers:
+              - name: start apache
                 state: started
-                enabled: true 
+                enabled: true
