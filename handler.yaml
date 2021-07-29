@@ -11,8 +11,7 @@
               name: httpd
               state: stopped
           notify:
-          -  start apache
-
+          - start apache
         handlers:
               - name: start apache
                 state: started
