@@ -1,4 +1,7 @@
 ---
   -
     hosts: worker
-    
+     tasks:
+       - name: install package
+          name: httpd
+          state: latest
