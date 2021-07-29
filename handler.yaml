@@ -10,14 +10,13 @@
           service:
               name: httpd
               state: started
-        - name: stop the httpd
-          service:
-              name: httpd
-              state: stopped
-          notify: httpd stopped
-
+       - name: Update the entry in /etc/hosts
+         lineinfile:
+            path: /etc/hosts
+            line: 192.168.0.12 www.client1.example.com
+         notify: change in file
     handlers:
-          - name: httpd stopped
+          - name: change in file
             service:
                name: httpd
                state: restarted
