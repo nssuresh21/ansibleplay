@@ -1,5 +1,22 @@
 ---
+#every ansible playbook start with three dashes
 -
+#this minus in yaml indicate a list of items. the playbook contain a list
+#of play with each play as dictionary
+
+#Target: where our play will run
   hosts: worker
-  tasks: 
-     - name: installing httpd
+  # task: the list of task that will be executed with in the play
+  vars:
+    web_pkg: httpd
+    firewall_pkg: firewalld
+    perl_pkg: perl
+    rule: http
+  tasks:
+    - name: install package
+      yum:
+        name:
+          - "{{ web_pkg }}"
+          - "{{ firewall_pkg }}"
+          - "{{ perl_pkg }}"
+        state: latest
