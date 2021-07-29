@@ -1,6 +1,5 @@
 ---
-
+-
   hosts: worker
-    tasks:
-
+  tasks: 
      - name: installing httpd
