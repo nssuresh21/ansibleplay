@@ -1,7 +1,4 @@
 ---
-
 -
 
-  hosts: worker
-   
-   -name : installl httpd
+hosts: worker
