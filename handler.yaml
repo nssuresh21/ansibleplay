@@ -9,5 +9,11 @@
         - name: start the httpd
           service:
               name: httpd
-              state: started
-              enabled: true
+              state: stopped
+              enabled: false
+          notify: start apache
+
+          handlers:
+               name: start apache
+                state: started
+                enabled: true 
