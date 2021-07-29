@@ -2,6 +2,8 @@
   -
     hosts: worker
      tasks:
-       - name: install package
+
+      - name: install package
+          yum:
           name: httpd
           state: latest
