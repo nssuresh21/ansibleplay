@@ -16,8 +16,8 @@
               state: stopped
           notify: httpd stopped
 
-        handlers:
+         handlers:
           - name: httpd stopped
             service:
-              name: httpd
-              state: restarted
+               name: httpd
+               state: restarted
