@@ -12,6 +12,8 @@
               state: stopped
           notify: start apache
         handlers:
-        -  name: start apache
-               state: started
-               enabled: true
+           - name: start apache
+               service:
+                 name: httpd
+                 state: started
+                 enabled: true
