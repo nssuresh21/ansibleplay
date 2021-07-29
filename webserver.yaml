@@ -2,8 +2,7 @@
 #for ansible we have three line
 -
 hosts: worker
-
- tasks:  
+ tasks:
 - name: Install the latest version of Apache
   yum:
     name: httpd
