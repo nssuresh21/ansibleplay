@@ -1,0 +1,111 @@
+for ubuntu:
+------
+one work statiion
+
+one msater :
+one worker :
+172.31.50.81 -- master
+172.31.51.96 -- worker
+
+actula process:below
+------------------------------------
+
+# apt-get update
+# apt-get -y install linux-image-generic-hwe-18.04
+# reboot
+
+passwd for master and worker node
+
+vi /etc/ssh/sshd_config 
+PasswordAuthentication yes
+
+in work station:
+ssh-keygen
+ ssh-copy-id root@nodename to both master and worker node
+# cd ~
+# apt -y install python3-pip
+# git clone https://github.com/kubernetes-sigs/kubespray.git
+# cd kubespray
+# pip3 install -r requirements.txt
+
+
+cp -rfp inventory/sample inventory/mycluster
+# declare -a IPS=(192.168.222.111 192.168.222.101 192.168.222.102 192.168.222.103 192.168.222.104)
+# CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
+
+
+inventory/mycluster/hosts.yaml - here you can decide which node to run master and which node to run worker node.
+
+# cat inventory/mycluster/group_vars/all/all.yml
+# cat inventory/mycluster/group_vars/k8s-cluster/k8s-cluster.yml
+
+ansible-playbook -i inventory/mycluster/hosts.yaml --become --become-user=root cluster.yml
+
+
+
+if required use below commands for any reference.
+-------------------------------------
+
+
+
+
+ssh-keygen
+ssh-copy-id root@172.31.50.81
+ssh-copy-id root@172.31.51.96
+
+
+cp -rfp inventory/sample inventory/mycluster
+declare -a IPS=(172.31.50.81 172.31.51.96)
+CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
+
+ansible-playbook -i inventory/mycluster/hosts.yaml --become --become-user=root nginx.yml
+
+export KUBECONFIG=
+
+3
+3 / 6
+
+
+172.31.50.81 -- master
+172.31.51.96 -- worker
+
+Suresh@2730
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@172.31.50.81
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@172.31.51.96
+
+---
+
+
+kubectl run nginx --image=nginx
+
+
+kubectl run nginx --image=nginx --dry-run=client -o yaml
+
+kubectl create deployment --image=nginx nginx
+
+kubectl create deployment --image=nginx nginx --dry-run=client -o yaml
+
+kubectl create deployment --image=nginx nginx --dry-run=client -o yaml > nginx-deployment.yaml
+
+kubectl create -f nginx-deployment.yaml
+
+kubectl create deployment --image=nginx nginx --replicas=4 --dry-run=client -o yaml > nginx-deployment.yaml
+
+-
+
+
+
+deploying metrics server: to monitor nodes and pods.
+
+
+git clone https://github.com/kodekloudhub/kubernetes-metrics-server.git
+
+go to /root/kubernetes-metrics-server
+
+kubectl create -f .
+
+it will install all relared service of Metrics server.
+
+
