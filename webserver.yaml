@@ -5,4 +5,9 @@
 #of play with each play as dictionary
 
 #Target: where our play will run
+  name: play1
   hosts: worker
+  tasks:
+    yum:
+      name: httpd
+      state: started
